@@ -1,0 +1,16 @@
+tornado
+tornado-httpclient-session
+pycurl
+redis
+requests
+requests-futures
+beautifulsoup4==4.4.1
+html5lib==0.999
+python-dateutil==2.4.2
+smartencoding==0.3
+SQLAlchemy==1.0.8
+psycopg2==2.6.1
+rfc3987
+lxml
+# removes insecure warnings
+grip

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mosca</title>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/thirds/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css" />
+
+    <link href="/static/css/thirds/highlighter/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/thirds/highlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+    {% block extracss %}{% endblock extracss %}
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/static/js/thirds/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/thirds/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/thirds/highlighter/shCore.js"></script>
+    <script type="text/javascript" src="/static/js/thirds/highlighter/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/static/js/thirds/highlighter/shBrushPython.js"></script>
+    <script type="text/javascript" src="/static/js/thirds/highlighter/shBrushXml.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        SyntaxHighlighter.all();
+    });
+    </script>
+
+    {% block extrajs %}{% endblock extrajs %}
+
+    <style>
+    </style>
+</head>
+<body>
+    {% block navbar %}
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <a href="/" class="navbar-text navbar-left logo">
+            <img src="/static/img/mosca.png" />
+        </a>
+
+        <div class="container-fluid">
+            <p class="navbar-text navbar-left">
+                {% block navbar_title %}
+                <b>Mosca</b> - Materiais para desenvolvimento
+                {% endblock %}
+            </p>
+        </div>
+
+        <div class="row row-centered top-menu">
+            <div class="col-xs-2">
+                <div class="item">
+                    <div class="content"></div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="item">
+                    <div class="content">
+                        <div class="btn-group">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    Frameworks
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    {% for cat in categorias %}
+                                    <li><a href="#">{{cat}}</a></li>
+                                    {% endfor %}
+                                    <li><a href="#">Bottle</a></li>
+                                    <li><a href="#">Django</a></li>
+                                    <li><a href="#">Flask</a></li>
+                                    <li><a href="#">Pyramid</a></li>
+                                    <li><a href="#">Web2py</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    Bancos de dados/ORMs
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">MongoDB</a></li>
+                                    <li><a href="#">MariaDB</a></li>
+                                    <li><a href="#">MySql</a></li>
+                                    <li><a href="#">Postgresql</a></li>
+                                    <li><a href="#">Pyramid</a></li>
+                                    <li><a href="#">SQL</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                  Ferramentas
+                                  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Base 64 Encode/Decode</a></li>
+                                    <li><a href="#">Url Encode/Decode</a></li>
+                                    <li><a href="#">Documentos</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    Testes
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Nose</a></li>
+                                    <li><a href="#">TDD</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    Versionamento
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Git</a></li>
+                                    <li><a href="#">Mercurial</a></li>
+                                    <li><a href="#">SVN</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    Mais
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Dropdown link</a></li>
+                                    <li><a href="#">Dropdown link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="item">
+                    <div class="content"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock navbar %}
+
+
+    <div class="panel panel-default">
+        {% block header %}
+        {% endblock header %}
+
+        {% block title %}
+        {% endblock title %}
+
+        <div class="panel-body">
+            <div class="row row-centered">
+                {% block left_menu %}
+                <div class="col-xs-3 col-min">
+                    <div class="item">
+                        <div class="content">
+                            <ul class="list-group">
+                                <li class="list-group-item">Cras justo odio</li>
+                                <li class="list-group-item">Dapibus ac facilisis in</li>
+                                <li class="list-group-item">Morbi leo risus</li>
+                                <li class="list-group-item">Porta ac consectetur ac</li>
+                                <li class="list-group-item">Vestibulum at eros</li>
+                            </ul>
+
+                            <ul class="list-group">
+                                <li class="list-group-item">Advertisement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+                {% block super_body %}
+                <div class="col-xs-6 col-min">
+                    <div class="item">
+                        <div class="content">
+                            <div class="panel panel-default panel-min">
+                                <div class="panel-heading">
+                                {% block subtitle %}
+                                {% if title %}{{title or ''}}{% endif %}
+                                {% endblock subtitle %}
+                                </div>
+                                <div class="panel-body">
+                                {% block body %}
+                                {% endblock body %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+                {% block right_menu %}
+                <div class="col-xs-3 col-min">
+                    <div class="item">
+                        <div class="content">
+                            <ul class="list-group">
+                                <li class="list-group-item">Advertisement</li>
+                                <li class="list-group-item">Advertisement</li>
+                                <li class="list-group-item">Advertisement</li>
+                                <li class="list-group-item">Advertisement</li>
+                                <li class="list-group-item">Advertisement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+    {% block footer %}
+    <footer>
+    </footer>
+    {% endblock footer %}
+
+    {% block extra_footer %}
+    {% endblock extra_footer %}
+</body>
+</html>

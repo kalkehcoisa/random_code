@@ -1,0 +1,77 @@
+#Converte usuários do Xoops para Wordpress:
+
+INSERT INTO `website_port`.`wp_users`
+SELECT (uid+4) as ID, 
+uname as user_login,
+pass as user_pass,
+uname as user_nicename,
+email as user_email,
+url as user_url,
+FROM_UNIXTIME( user_regdate ) as user_registered,
+'' as user_activation_key,
+0 as user_status,
+name as display_name FROM `website_xoops`.`xoopswebsite_users`;
+
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'first_name' as meta_key, SUBSTRING_INDEX( `name` , ' ', 1 ) as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'last_name' as meta_key, SUBSTRING(name,INSTR(name,' ')+1) as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'nickname' as meta_key, uname as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'description' as meta_key, bio as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'descricao' as meta_key, bio as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'rich_editing' as meta_key, 1 as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'comment_shortcuts' as meta_key, 0 as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'admin_color' as meta_key, 'fresh' as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'use_ssl' as meta_key, 0as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'show_admin_bar_front' as meta_key, 1 as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'wp_capabilities' as meta_key, 'a:1:{s:10:"subscriber";s:1:"1";}' as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'wp_user_level' as meta_key, 0 as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'site' as meta_key, url as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'telefone' as meta_key, user_icq as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'endereco' as meta_key, user_from as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'profissao' as meta_key, user_occ as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'msn' as meta_key, user_msnm as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'interesses' as meta_key, user_intrest as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'newsletter' as meta_key, user_mailok as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'aim' as meta_key, user_aim as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;
+INSERT INTO `website_port`.`wp_usermeta`
+SELECT NULL as umeta_id, (uid+4) as user_id, 'yim' as meta_key, user_yim as meta_value
+FROM `website_xoops`.`xoopswebsite_users`;

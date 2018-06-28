@@ -1,0 +1,43 @@
+{% extends 'basesite_loja.html' %}
+{% load url from future %}
+
+{% block posextrahead %}
+{{block.super}}
+<link rel="stylesheet" href="{{MEDIA_URL}}css/style_cart.css" type="text/css" />
+{% endblock posextrahead %}
+
+
+{% block loja_body %}
+<div class="cart_wrapper">
+    {% block cart_menu %}
+    <div class="cart_menu">
+        <a href="{% url 'cart_list' %}">
+            <div class="cart_menu_item {% ifequal cart_option 'list' %}cart_item_active{% endifequal %}">
+                ITENS SELECIONADOS
+            </div>
+        </a>
+        <a href="{% url 'cart_list' %}">
+            <div class="cart_menu_item {% ifequal cart_option 'signin' %}cart_item_active{% endifequal %}">
+                CADASTRO
+            </div>
+        </a>
+        <a href="{% url 'cart_list' %}">
+            <div class="cart_menu_item {% ifequal cart_option 'finish' %}cart_item_active{% endifequal %}">
+                FINALIZAR COMPRA
+            </div>
+        </a>
+        <a href="{% url 'cart_list' %}">
+            <div class="cart_menu_item {% ifequal cart_option 'confirm' %}cart_item_active{% endifequal %}">
+                CONFIRMA&Ccedil;&Atilde;O
+            </div>
+        </a>
+    </div>
+    {% endblock cart_menu %}
+
+    <div class="cart_content">
+    {% block cart_body %}
+    {% endblock cart_body %}
+    </div>
+</div>
+
+{% endblock loja_body %}

@@ -1,0 +1,7 @@
+gfortran
+libopenblas-dev
+liblapack-dev
+python3.4
+python3.4-dev
+python3-virtualenv
+python3-pip

@@ -1,0 +1,139 @@
+{% extends 'django_cart/base_cart.html' %}
+{% load url from future %}
+{% load uteis %}
+
+{% block posextrahead %}
+{{block.super}}
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        window.my_settings = {
+                                'ajax_get_quantity': "{% url 'ajax_get_quantity' %}"
+                             }
+    });
+</script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/script_cart_list.js"></script>
+{% endblock posextrahead %}
+
+
+{% block cart_body %}
+<form id="submit_form" action="{% url 'cart_list' %}" target="_self" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Alterar" style="display:none;" />
+
+    <input type="hidden" name="num_produtos" value="{{cart.cart.number_of_items}}" />
+
+    <table class="cart_listing">
+        <tr>
+            <th class="cart_list_img_tit"></th>
+            <th class="cart_list_item_tit">
+                ITEM<span style="height: 100%; width: 3px; padding-right: 30px;">&nbsp;</span>
+            </th>
+            <th class="cart_list_tam_tit">
+                TAMANHO
+            </th>
+            <th class="cart_list_quant_tit">
+                QUANTIDADE
+            </th>
+            <th class="cart_list_vunit_tit">
+                VALOR UNIT&Aacute;RIO
+            </th>
+            <th class="cart_list_vtot_tit">
+                VALOR TOTAL
+            </th>
+        </tr>
+
+        <tr class="cart_list_line">
+            <td colspan="6">
+                <div class="cart_list_div"></div>
+            </td>
+        </tr>
+
+
+        {% for p in cart %}
+        <tr pid="{{p.product.id}}">
+            <td class="cart_list_img">
+                <div class="list_img">
+                    <img src="{{p.product.imagem.url_67x80}}" />
+                </div>
+            </td>
+            <td class="cart_list_item">
+                <div class="list_item">
+                    <font style="text-transform: uppercase;">
+                        {{p.product.produto.nome}} {{p.product.cor}}
+                    </font>
+                    <br/>
+                    Ref. <font id="ref_code_{{forloop.counter}}">{{p.product.codigo_referencia}}</font>
+                </div>
+                <div class="cart_excl">excluir este produto</div>
+            </td>
+
+            
+            <td class="cart_list_tam">
+                <div id="tam_show_{{forloop.counter}}" class="list_tam">
+                    <font style="display: block;">{{p.product.tamanho}}</font>
+                    {% make_tam_select 'tam' p.product.id p.product.cor p.product.tamanho.tamanho forloop.counter %}
+                </div>
+
+                <div class="cart_alter_tam_{{forloop.counter}}">
+                    alterar tamanho
+                </div>
+            </td>
+
+
+            <td class="cart_list_quant">
+                <input type="hidden" name="tamanhocor_id_{{forloop.counter}}" value="{{p.product.id}}" />
+
+                <div id="container" class="list_quant">
+                    <font id="tamcor_quantity_{{forloop.counter}}" style="display: block;">
+                        {{p.quantity}}
+                    </font>
+
+                    {% make_quant_select 'quant' p.product.id p.product.quantidade_estoque p.quantity forloop.counter %}
+                </div>
+
+                <div class="cart_alter_qtd_{{forloop.counter}}" pqtd="{{p.quantity}}" pqtdest="{{p.product.quantidade_estoque}}">
+                    alterar quantidade
+                </div>
+            </td>
+
+
+            <td class="cart_list_vunit">
+                R$ {{p.unit_price|floatformat:"2"}}
+            </td>
+            <td class="cart_list_vtot">
+                 R$ {{p.total_price|floatformat:"2"}}
+            </td>
+        </tr>
+
+        <tr class="cart_list_line">
+            <td colspan="6">
+                <div class="cart_list_div"></div>
+            </td>
+        </tr>
+        {% endfor %}
+
+
+        <tr class="cart_list_line">
+            <td class="cart_list_img"></td>
+            <td colspan="3" class="cart_envio_presente">
+                <input type="checkbox" name="enviar_p_presente" /> ENVIAR PARA PRESENTE (R$ 1,50 por pe&ccedil;a)
+            </td>
+            <td class="cart_list_vunit">
+                <!---R$ 50,00-->
+            </td>
+            <td class="cart_list_vtot">
+                 R$ {{cart.cart.cart_total_price|floatformat:"2"}}
+            </td>
+        </tr>
+
+
+        <tr class="cart_list_line">
+            <td colspan="6">
+                <div class="cart_list_div"></div>
+            </td>
+        </tr>
+
+    </table>
+</form>
+{% endblock cart_body %}

@@ -1,0 +1,1 @@
+{"data": {"user": null}, "errors": [{"message": "Could not resolve to a User with the login of 'kalkehcoisaasdasdasdasd'.", "type": "NOT_FOUND", "path": ["user"], "locations": [{"line": 3, "column": 11}]}]}

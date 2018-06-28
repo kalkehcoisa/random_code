@@ -1,0 +1,39 @@
+ {% extends "mosca/base.html" %}
+
+{% block navbar_title %}
+<b>Mosca</b> - Admin
+{% endblock %}
+
+{% block left_menu %}
+<div class="col-xs-1 col-min">
+    <div class="item">
+        <div class="content">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{url_for("admin.create")}}" class="btn">Create new post</a>
+                </li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+            </ul>
+
+            <ul class="list-group">
+                <li class="list-group-item">Gambiarration</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block super_body %}
+<div class="panel panel-default panel-min">
+    <div class="panel-heading">
+    {% block subtitle %}
+    {% if title %}{{title or ''}}{% endif %}
+    {% endblock subtitle %}
+    </div>
+    <div class="panel-body">
+    {% block body %}
+    {% endblock body %}
+</div>
+{% endblock %}
+
+{% block right_menu %}{% endblock %}

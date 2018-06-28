@@ -1,0 +1,2 @@
+use fried_bundle_fly
+db.createUser({user: "clockwork_monster_fly", pwd: "(*&$%@HAGS&dha", roles: [{ role: "readWrite", db: "fried_bundle_fly" }]})

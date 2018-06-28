@@ -1,0 +1,890 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"class",
+				"classmethod	class"
+			],
+			[
+				"statu",
+				"status_int	statement"
+			],
+			[
+				"assert",
+				"assertEqual	function"
+			],
+			[
+				"set",
+				"setUpClass	function"
+			],
+			[
+				"p",
+				"property	New Property"
+			],
+			[
+				"urll",
+				"urllib2	module"
+			],
+			[
+				"asser",
+				"assertEqual	function"
+			],
+			[
+				"uuid",
+				"uuid4	function"
+			],
+			[
+				"ass",
+				"assertEqual	function"
+			],
+			[
+				"select",
+				"select_all	function"
+			],
+			[
+				"Not",
+				"NotImplementedError	class"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"b64",
+				"b64encode	function"
+			],
+			[
+				"sp",
+				"spark"
+			],
+			[
+				"opt",
+				"option"
+			],
+			[
+				"time",
+				"timeout	setTimeout function"
+			],
+			[
+				"result",
+				"results"
+			],
+			[
+				"resul",
+				"resultDiv"
+			],
+			[
+				"__iter",
+				"__iterkey	statement"
+			],
+			[
+				"__",
+				"__iterkey	(attribute, instance)"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"quick",
+				"quicksearch"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"ordering",
+				"ordering_request"
+			],
+			[
+				"order",
+				"ordering_request	function"
+			],
+			[
+				"m",
+				"margin-bottom"
+			],
+			[
+				"border-r",
+				"border-right"
+			],
+			[
+				"product",
+				"product2chart"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"primay",
+				"primary_key"
+			],
+			[
+				"relat",
+				"relativedelta	class"
+			],
+			[
+				"week",
+				"weekly_last	statement"
+			],
+			[
+				"Product",
+				"ProductStore	class"
+			],
+			[
+				"Price",
+				"PriceWeekly	class"
+			],
+			[
+				"produc",
+				"product_id"
+			],
+			[
+				"store",
+				"store_id"
+			],
+			[
+				"rela",
+				"relativedelta	(imported, class)"
+			],
+			[
+				"datet",
+				"datetime	(imported, instance)"
+			],
+			[
+				"date",
+				"datetime	class"
+			],
+			[
+				"Super",
+				"SuperChannelProduct	class"
+			],
+			[
+				"Produ",
+				"ProductStore	class"
+			],
+			[
+				"pro",
+				"product	statement"
+			],
+			[
+				"route",
+				"route_url"
+			],
+			[
+				"__ta",
+				"__table_args__	statement"
+			],
+			[
+				"de",
+				"deferred_select_widget"
+			],
+			[
+				"Base",
+				"BaseHandler"
+			],
+			[
+				"Buss",
+				"BusinessMenuItem"
+			],
+			[
+				"conn",
+				"connection"
+			],
+			[
+				"data",
+				"database"
+			],
+			[
+				"curr",
+				"current_database"
+			],
+			[
+				"M",
+				"MySQL"
+			],
+			[
+				"Trend",
+				"TrendSansFour"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"f",
+				"font-style"
+			],
+			[
+				"fot",
+				"font-family"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"back",
+				"background-size"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"bo",
+				"bolder"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"backgroun",
+				"background-repeat"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"backgr",
+				"background-repeat"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"background-",
+				"background-color"
+			],
+			[
+				"inline",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 369.0,
+		"last_filter": "mar",
+		"selected_items":
+		[
+			[
+				"mar",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Mar",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"M",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Anonymous Function"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/jayme/projetos/simbiose/README.md",
+		"/home/jayme/projetos/luiza/README.md",
+		"/home/jayme/projetos/luiza/test_data.json",
+		"/home/jayme/projetos/luiza/api.py",
+		"/home/jayme/projetos/luiza/tests.py",
+		"/home/jayme/projetos/luiza/nose.cfg",
+		"/home/jayme/projetos/listagem/listagem/__init__.py",
+		"/home/jayme/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/jayme/Desktop/param_check.py",
+		"/home/jayme/freelas/frequentos/frequento/restaurante/views.py",
+		"/home/jayme/Desktop/letter.txt",
+		"/home/jayme/projetos/luiza/__init__.py",
+		"/home/jayme/projetos/luiza/models.py",
+		"/home/jayme/projetos/luiza/fake_api.py",
+		"/home/jayme/freelas/frequentos/frequento/packages/mybook/helpers.py",
+		"/home/jayme/freelas/frequentos/frequento/packages/mybook/models.py",
+		"/home/jayme/freelas/frequentos/frequento/restaurante/helpers.py",
+		"/home/jayme/projetos/luiza/luiza/settings.py",
+		"/home/jayme/projetos/luiza/person/api.py",
+		"/home/jayme/projetos/luiza/luiza/urls.py",
+		"/home/jayme/projetos/luiza/api/models.py",
+		"/home/jayme/projetos/luiza/api/urls.py",
+		"/home/jayme/doois/doois/projetos/fgv_ghg/factors/decorators.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/models/admin.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/auth.py",
+		"/home/jayme/projetos/simbiose/helpers.py",
+		"/home/jayme/projetos/simbiose/tests/test_elastic.py",
+		"/home/jayme/projetos/simbiose/tests/test_cass.py",
+		"/home/jayme/projetos/simbiose/tests/test_task.py",
+		"/home/jayme/projetos/simbiose/task.py",
+		"/home/jayme/projetos/simbiose/elastic.py",
+		"/home/jayme/projetos/simbiose/cass.py",
+		"/home/jayme/projetos/simbiose/create_db.cql",
+		"/home/jayme/projetos/simbiose/pip-reqs.txt",
+		"/home/jayme/projetos/simbiose/apt-reqs.txt",
+		"/home/jayme/projetos/simbiose/tests/test_helpers.py",
+		"/home/jayme/projetos/simbiose/tests.py",
+		"/home/jayme/projetos/simbiose/cassandra.py",
+		"/home/jayme/projetos/simbiose/deploy.sh",
+		"/home/jayme/projetos/simbiose/setup.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/scripts/initializedb.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/caching.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/runserver.py",
+		"/home/jayme/projetos/mosca/mosca/deploy/mosca.conf",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/mosca/base.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/views/admin.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/views/tools.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/views/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/setup.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/models/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/models/articles.py",
+		"/media/jayme/1def54c5-c55f-4225-998a-d0dad8eb8e5b/.steam/SteamApps/common/Starbound/linux32/launch_launcher.sh",
+		"/home/jayme/Desktop/Starbound.desktop",
+		"/home/jayme/projetos/mosca/mosca/mosca/articles/forms.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/articles/models.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/views.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/views.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/admin/views.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/admin/models.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/admin.py",
+		"/home/jayme/projetos/mosca/mosca/mosca.wsgi",
+		"/home/jayme/projetos/mosca/.htaccess",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/url/encode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/url/decode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/list.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/css/styles.css",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/base64/decode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/docs/cpf.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/mosca/home.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/base64/encode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/admin/home.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/docs",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/tools/cpf",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/js/bootstrap-select.min.js",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/css/bootstrap-select.min.css",
+		"/var/virtual_envs/mosca/lib/python3.4/site-packages/Flask_Admin-1.0.8-py3.4.egg/examples/runserver.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/home.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/tools/templates/base.html",
+		"/var/virtual_envs/mosca/lib/python3.4/site-packages/Flask_Admin-1.0.8-py3.4.egg/flask_admin/__init__.py",
+		"/var/virtual_envs/mosca/lib/python3.4/site-packages/Flask_Admin-1.0.8-py3.4.egg/flask_admin/actions.py",
+		"/var/virtual_envs/mosca/lib/python3.4/site-packages/Flask_Admin-1.0.8-py3.4.egg/flask_admin/base.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/home.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/admin/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/admin/mosca_master.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/admin/login.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/index/templates/base.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/index/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/index/views.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/css/bootstrap.min.css",
+		"/home/jayme/projetos/mosca/mosca/mosca/index/index.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/auth/auth.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/auth/views.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/helpers.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/admin/my_master.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/auth/schemas.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/schemas.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/models/auth.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/admin/index.html",
+		"/home/jayme/projetos/web2py/web2py.py",
+		"/home/jayme/projetos/web2py/site-packages/__init__.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/scripts/run_dev.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/tools/list.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/base.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/schemas/__init__.py",
+		"/home/jayme/projetos/muninn/muninn/setup.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/tools/base64/decode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/tools/base64/encode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/tools/url/decode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/templates/tools/url/encode.html",
+		"/home/jayme/projetos/mosca/mosca/mosca/views/auth.py",
+		"/home/jayme/projetos/muninn/muninn/muninn.wsgi",
+		"/media/jayme/1def54c5-c55f-4225-998a-d0dad8eb8e5b/Copy/habisp/familias/familias/production.ini",
+		"/home/jayme/projetos/muninn/munnin.old.tar",
+		"/home/jayme/projetos/muninn/.gitignore",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/js/general.js",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/img/nothing.txt",
+		"/home/jayme/projetos/mosca/mosca/mosca/static/css",
+		"/home/jayme/projetos/muninn/muninn/muninn/scripts/initializedb.py",
+		"/home/jayme/projetos/mosca/mosca/mosca/scripts",
+		"/home/jayme/projetos/mosca/requirements.txt",
+		"/home/jayme/projetos/mosca/README.txt",
+		"/home/jayme/projetos/mosca/MANIFEST.in",
+		"/home/jayme/projetos/mosca/mosca/setup.cfg",
+		"/home/jayme/projetos/pharao/pyramid/pharao/backends/manager.py",
+		"/home/jayme/projetos/sustentavel/trunk/sustentavel/media/js/fsearch.js",
+		"/home/jayme/projetos/sustentavel/trunk/sustentavel/media/js/general.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/jayme/projetos/mosca/mosca/mosca/",
+			"/home/jayme/projetos/mosca/mosca/mosca/templates",
+			"/home/jayme/projetos/muninn/muninn/muninn",
+			"/media/jayme/1def54c5-c55f-4225-998a-d0dad8eb8e5b/Copy/habisp/familias/familias/familias/views",
+			"/home/jayme/projetos/muninn/muninn/muninn",
+			"/media/jayme/1def54c5-c55f-4225-998a-d0dad8eb8e5b/Copy/habisp/familias/familias/familias",
+			"/home/jayme/projetos/muninn/muninn/muninn",
+			"/media/jayme/1def54c5-c55f-4225-998a-d0dad8eb8e5b/Copy/habisp/familias/familias",
+			"/home/jayme/projetos/muninn",
+			"/home/jayme/projetos/munnin",
+			"/home/jayme/projetos/munnin/muninn/munnin",
+			"/home/jayme/projetos/munnin",
+			"/home/jayme/projetos/python-amazon-product-api-py3",
+			"/home/jayme/projetos/python-amazon-product-api",
+			"/var/virtual_envs/detourweb/lib/python2.7/site-packages/django/contrib/gis",
+			"/home/jayme/freelas/detourweb",
+			"/var/virtual_envs/detourweb/lib/python2.7/site-packages",
+			"/home/jayme/freelas/detourweb",
+			"/home/jayme/freelas/detourweb/community",
+			"/home/jayme/freelas/detourweb",
+			"/home/jayme/freelas/detourweb/web",
+			"/home/jayme/freelas/detourweb",
+			"/home/jayme/projetos/pharao/pyramid/pharao/templates",
+			"/home/jayme/projetos/pharao/pyramid/pharao",
+			"/home/jayme/freelas/frequento2",
+			"/home/jayme/freelas/frequento",
+			"/home/jayme/freelas/frequento2",
+			"/home/jayme/freelas/frequento",
+			"/home/jayme/projetos/sustentavel/trunk/sustentavel"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"<code>",
+			"</code>",
+			"100000429486498",
+			"'id'",
+			"id'",
+			"urllib2",
+			"webtest",
+			"str(",
+			"str",
+			"DateTime",
+			"tab",
+			"open",
+			"UnitTestViews",
+			"person_insert",
+			"UnitTests",
+			"gera_pess",
+			"os.path.join(self.base_url, 'person/')",
+			"api = webtest.TestApp(url)",
+			"r.status_code",
+			"requests.",
+			"{\"Content-Type\", \"application/json\"}",
+			"r.body",
+			"requests.",
+			"@bottle.",
+			"memory",
+			"base_url",
+			"webtest",
+			"200",
+			"print",
+			"DBSession",
+			"self",
+			"Popen",
+			"testing",
+			"recipe",
+			"@route",
+			"new_cassandra_item",
+			"sleep",
+			"elas",
+			"NEW_TIME",
+			"START_TIME",
+			"timeout",
+			":",
+			"insert_time",
+			"MyModelView",
+			"db.session",
+			"db.",
+			"db.Model",
+			"db.",
+			"db.Column",
+			"db.Model",
+			"db.session",
+			"Base",
+			"():",
+			"app.route",
+			"MyAdminIndexView",
+			"index_view=MyAdminIndexView",
+			"index_view=MyAdminIndexView(url='/')",
+			"init_login",
+			"app",
+			"NO_VALUE",
+			"cache",
+			"categorias",
+			"encode",
+			" col-centered",
+			"col-centered",
+			"edit",
+			"]",
+			"loader",
+			"template",
+			"admin",
+			"my_master",
+			"index.html",
+			"LoginForm",
+			"session",
+			"index.",
+			"BASE_DIR",
+			"MyAdminIndexView",
+			"admin",
+			"init_login",
+			"generate_password_hash",
+			"MyModelView",
+			"helpers",
+			"MyModelView",
+			"safe",
+			"success",
+			"row-centered",
+			"col-centered",
+			"panel-min",
+			"muninn",
+			"raven",
+			"showBox",
+			".result",
+			"$(this)",
+			"main",
+			"search",
+			"searchi",
+			"busca",
+			".live",
+			"fsearch",
+			"searchInput",
+			"quicksearch",
+			"print",
+			"pri",
+			"session_factory_from_settings",
+			"title",
+			"{% extends \"../base.html\" %}",
+			"jinja",
+			")\">",
+			"src=\"",
+			"../assets/img/icons",
+			"BeforeRender",
+			"small-",
+			"large-4",
+			"large-8",
+			"large-12",
+			"small-6",
+			"lineChart",
+			"Numeric(8, 2)",
+			"singleton",
+			"Product",
+			"ProductResource",
+			"RECENT_PRICES",
+			"10",
+			"table =",
+			"PriceWeekly",
+			"store_id",
+			"ProductStore",
+			"weekly_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"`",
+			"unicode",
+			"'/person/'",
+			"api = webtest.TestApp(self.base_url)",
+			"r.status_int",
+			"api.",
+			"{\"Content-Type\": \"application/json\"}",
+			"r.json",
+			"self.app.",
+			"@app.",
+			"@api.",
+			"cls",
+			"person",
+			"@bottle.route",
+			"cass",
+			"end_time",
+			"start_time",
+			"last_change",
+			"db_session",
+			"",
+			"Base",
+			"",
+			"Column",
+			"Base",
+			"db_session",
+			"(self):",
+			"route",
+			"decode",
+			"",
+			"mosca.",
+			"warning",
+			"mosca",
+			"raven",
+			"ravenly",
+			"spark",
+			".on",
+			"$(this)",
+			"qsearch",
+			"{% extends 'muninn:templates/base.html' %}",
+			")}}\">",
+			"src=\"{{",
+			"request.static_url('muninn:static/img/icones",
+			"medium-",
+			"four",
+			"eight",
+			"twelve",
+			"small-12",
+			"Decimal",
+			"LAST_PRICES",
+			"Product",
+			"",
+			"['weekly_values']",
+			"store_id=store.id,",
+			"product_id=prod.id",
+			"'",
+			"ps",
+			"Unicode",
+			"'",
+			"Numeric(8, 2)",
+			"Integer",
+			"",
+			"scale",
+			"Numeric",
+			"precision",
+			"scale",
+			"DECIMAL",
+			"'",
+			"str",
+			"current",
+			"unavailable",
+			"}}\"",
+			"}}<",
+			"{{",
+			"'store_store.",
+			"Integer",
+			"BigInteger",
+			"colander.String",
+			"synonym",
+			"Unicode",
+			"store_store",
+			"=",
+			"'",
+			"validator",
+			"User",
+			"'",
+			"username",
+			"User",
+			"user",
+			"profiles",
+			"auth_group_user",
+			"auth_user",
+			"User",
+			"name",
+			"GroupUser",
+			"UsersGroups",
+			"auth_users_groups",
+			"html",
+			"as e",
+			"CrowTable",
+			".jinja2",
+			"muninn",
+			"synapse_overflow",
+			"urllib.request.build_opener",
+			"urllib.request.HTTPHandler",
+			"urllib.request.Request",
+			" as e",
+			"str(",
+			"as e:",
+			"context_type=",
+			"SlugField(max_length=100, ",
+			"/static",
+			"var ",
+			"",
+			"backends",
+			"pid",
+			"demoframe",
+			"pharao",
+			"Compra",
+			"compra",
+			"Compra",
+			"compra",
+			"coleta",
+			"Coleta",
+			"coleta",
+			"/assets/styles",
+			"/static/",
+			"/static/images/",
+			"{{STATIC_URL}}js/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "luiza.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

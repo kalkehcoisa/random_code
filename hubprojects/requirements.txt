@@ -1,0 +1,4 @@
+Flask==1.0.2
+requests==2.18.4
+flask-swagger==0.2.13
+tinydb==3.9.0.post1

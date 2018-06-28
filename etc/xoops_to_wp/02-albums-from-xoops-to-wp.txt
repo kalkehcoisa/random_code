@@ -1,0 +1,48 @@
+#Converte os álbuns do xoops em álbuns do wppa.
+
+INSERT INTO `website_port`.`wp_wppa_albums`
+SELECT cid as id, 
+title as name,
+title as description, 
+0 as a_order,
+0 as main_photo,
+pid as a_parent,
+0 as p_order_by,
+'slide' as cover_linktype,
+0 as cover_linkpage,
+'admin' as owner,
+(select FROM_UNIXTIME(date) from `website_xoops`.`xoopswebsite_myalbum_photos` where lid = (select min(lid) from `website_xoops`.`xoopswebsite_myalbum_photos` where cid = cat.cid) ) as timestamp,
+'0/0' as upload_limit
+FROM `website_xoops`.`xoopswebsite_myalbum_cat` cat;
+
+
+#Converte as imagens dos álbuns do xoops para wppa.
+
+#(Atribui todas ao admin.)
+TRUNCATE wp_wppa_photos;
+INSERT INTO wp_wppa_photos
+SELECT lid as id,
+cid as album,
+ext,
+CONCAT(title, '.', ext) as name,
+'' as description,
+0 as p_order,
+rating as mean_rating,
+'' as linkurl, 
+'' as linktitle,
+'_self' as linktarget,
+'admin' as owner,
+date as timestamp,
+'publish' as status,
+votes as rating_count
+FROM `website_xoops`.`xoopswebsite_myalbum_photos`;
+
+#(Corrige as atribuições de usuários.)
+UPDATE `website_port`.`wp_wppa_photos` wp 
+LEFT JOIN `website_xoops`.`xoopswebsite_myalbum_photos` photo ON wp.id = photo.lid
+LEFT JOIN `website_xoops`.`xoopswebsite_users` user ON user.uid = photo.submitter
+SET wp.owner = user.uname;
+
+UPDATE `website_port`.`wp_wppa_photos` wp 
+SET wp.owner = 'admin'
+WHERE wp.owner is NULL or LENGTH(wp.owner) < 3;

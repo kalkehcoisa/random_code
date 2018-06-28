@@ -1,0 +1,63 @@
+{% extends "common_base.html" %}
+{% block extrahead %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/dragndrop/jquery.event.drag-2.0.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/dragndrop/jquery.event.drop-2.0.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/dragndrop/excanvas.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.scrollTo-1.4.2-min.js"></script>
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/mapa/minha_cidade.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {       
+        
+    });
+</script>
+{% endblock extrahead %}
+
+{% block body %}
+<table class="my_city" cellspacing="0px" cellpadding="0px">
+    {% for bloco in lugares %}
+    <tr>
+        {% for lugar in bloco %}
+        {% if lugar.peca_construcao %}
+            <td style="background-image: url('{{lugar.imagem}}'); margin: 0;" coord_x="{{lugar.coord_x}}" coord_y="{{lugar.coord_y}}">
+                {% if lugar.peca_construcao.imagem.url_50x50 %}
+                <img src="{{lugar.peca_construcao.imagem.url_50x50}}" class="construcao" name="{{lugar.peca_construcao.construcao.nome|lower}}_{{lugar.peca_construcao.construcao.id}}" counter="{{lugar.peca_construcao.ordenacao}}" />
+                {% endif %}
+            </td>
+        {% else %}
+            <td style="background-image: url('{{lugar.imagem}}');" coord_x="{{lugar.coord_x}}" coord_y="{{lugar.coord_y}}">
+            </td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="bottom_menu_bar"></div>
+<div class="button_move_up"></div>
+<div class="button_move_down"></div>
+
+
+{% comment %}
+<ul class="inlineblock">
+        <div class="button_move_left"></div>
+        <div class="button_move_right"></div>
+{% endcomment %}
+
+<br/><br/><br/>
+
+
+<a href="{% url viajar prev_linha coluna %}">Previous Line</a>
+
+<br/><br/>
+
+<a href="{% url viajar linha prev_coluna %}">Previous Column</a> - <a href="{% url viajar linha next_coluna %}">Next Column</a>
+
+<br/><br/>
+
+<a href="{% url viajar next_linha coluna %}">Next Line</a>
+
+{% endblock body %}

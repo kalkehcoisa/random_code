@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        $("h3").on('click', function()
+        {
+            if(!$(this).next().is(':visible'))
+            {
+                $('div').slideUp(20);
+            }
+            $(this).next().slideToggle(20);
+        });
+         
+        $('li:eq(0) div').show();
+    });
+    </script>
+
+    <style type="text/css">
+    div {
+        display: none;
+        background-color: #FF9927;
+        font-weight: bold;
+        margin: 1px;
+        cursor: pointer;
+        padding: 5 5 5 7px;
+        list-style: circle;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+    ul {
+        list-style: none;
+        padding: 0 0 0 0;
+    }
+    ul li {
+        font-weight: normal;
+        cursor: auto;
+        background-color: #fff;
+        padding: 0 0 0 7px;
+    }
+    h3 {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    h3:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <h3>Lorem Ipsum</h3>
+            <div>
+                <p>Dolor sit Amet</p>
+            </div>
+        </li>
+        <li>
+            <h3>Lorem Ipsum</h3>
+            <div>
+                <p>Dolor sit Amet</p>
+            </div>
+        </li>
+        <li>
+            <h3>Lorem Ipsum</h3>
+            <div>
+                <p>Dolor sit Amet</p>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

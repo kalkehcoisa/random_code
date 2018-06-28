@@ -1,0 +1,16 @@
+{% extends "posts/base.html" %}
+
+{% block body %}
+    {% for post in posts %}
+        <h2>
+            <a href="{{ url_for('posts.detail', permalink=post.permalink) }}">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.body|truncate(100) }}</p>
+        <p>
+            {{ post.created.strftime('%H:%M %Y-%m-%d') }} |
+            {% with total=post.comments|length %}
+                {{ total }} comment {%- if total > 1 %}s{%- endif -%}
+            {% endwith %}
+        </p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    adscrape_candidates:
+        container_name: adscrape_candidates
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        command: bash -c "python3 /adscrape_candidates/server.py"
+        volumes:
+            - .:/adscrape_candidates
+        ports:
+            - "5050:5050"

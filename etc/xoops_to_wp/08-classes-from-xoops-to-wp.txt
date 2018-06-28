@@ -1,0 +1,152 @@
+#fix a table from the plugin wp ads rotate
+ALTER TABLE wp_adrotate ADD active VARCHAR(10) NULL DEFAULT 'yes';
+ALTER TABLE wp_adrotate ADD startshow VARCHAR(20) NULL DEFAULT '0';
+ALTER TABLE wp_adrotate ADD endshow VARCHAR(20) NULL DEFAULT '0';
+
+#SELECT * FROM website_xoops.smartsalas_salas;
+
+DROP FUNCTION IF EXISTS `slugify`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost`
+FUNCTION `slugify`(dirty_string varchar(200))
+RETURNS varchar(200) CHARSET latin1
+DETERMINISTIC
+BEGIN
+    DECLARE x, y , z Int;
+    Declare temp_string, allowed_chars, new_string VarChar(200);
+    Declare is_allowed Bool;
+    Declare c, check_char VarChar(1);
+
+    set allowed_chars = "abcdefghijklmnopqrstuvwxyz0123456789-";
+    set temp_string = dirty_string;
+
+    Select temp_string Regexp('&') Into x;
+    If x = 1 Then
+        Set temp_string = replace(temp_string, '&', ' and ');
+    End If;
+
+    Select temp_string Regexp('[^a-z0-9]+') into x;
+    If x = 1 then
+        set z = 1;
+        While z <= Char_length(temp_string) Do
+            Set c = Substring(temp_string, z, 1);
+            Set is_allowed = False;
+            Set y = 1;
+            Inner_Check: While y <= Char_length(allowed_chars) Do
+                If (strCmp(ascii(Substring(allowed_chars,y,1)), Ascii(c)) = 0) Then
+                    Set is_allowed = True;
+                    Leave Inner_Check;
+                End If;
+                Set y = y + 1;
+            End While;
+            If is_allowed = False Then
+                Set temp_string = Replace(temp_string, c, '-');
+            End If;
+
+            set z = z + 1;
+        End While;
+    End If;
+
+    Select temp_string Regexp("^-|-$|'") into x;
+    If x = 1 Then
+        Set temp_string = Replace(temp_string, "'", '');
+        Set z = Char_length(temp_string);
+        Set y = Char_length(temp_string);
+        Dash_check: While z > 1 Do
+            If Strcmp(SubString(temp_string, -1, 1), '-') = 0 Then
+                Set temp_string = Substring(temp_string,1, y-1);
+                Set y = y - 1;
+            Else
+                Leave Dash_check;
+            End If;
+            Set z = z - 1;
+        End While;
+    End If;
+
+    Repeat
+        Select temp_string Regexp("--") into x;
+        If x = 1 Then
+            Set temp_string = Replace(temp_string, "--", "-");
+        End If;
+    Until x <> 1 End Repeat;
+
+    If LOCATE('-', temp_string) = 1 Then
+        Set temp_string = SUBSTRING(temp_string, 2);
+    End If;
+
+    Return temp_string;
+END;;
+DELIMITER ;
+
+
+
+INSERT INTO `website_port`.`wp_posts`
+select (sa.id+51000) as id,
+1 as post_author,
+NOW() as post_date,
+NOW() as post_date_gmt,
+CONCAT(sa.cidade, ' - ', sa.estado, '<br/>',
+'Bairro: ', sa.bairro, '<br/>',
+'Telefone: ', sa.telefone1, ' ', COALESCE(sa.telefone2, ''), '<br/>',
+'Email: ', sa.email, '<br/>',
+'Site: ', sa.site, '<br/>') as post_content,
+CONCAT(sa.titulo, ' - ', sa.cidade, ' - ', sa.estado) as post_title,
+CONCAT(sa.cidade, ' - ', sa.estado, '<br/>',
+'Bairro: ', sa.bairro, '<br/>',
+'Telefone: ', sa.telefone1, ' ', COALESCE(sa.telefone2, ''), '<br/>',
+'Email: ', sa.email, '<br/>',
+'Site: ', sa.site, '<br/>') as post_excerpt,
+'publish' as post_status,
+'closed' as comment_status,
+'open' as ping_status,
+'' as post_password,
+CONCAT(sa.titulo, ' - ', sa.cidade, ' - ', sa.estado) as post_name,
+NULL as to_ping,
+NULL as pinged,
+NOW() as post_modified,
+NOW() as post_modified_gmt,
+NULL as post_content_filtered,
+0 as post_parent,
+'' as guid,
+0 as menu_order,
+'post' as post_type,
+'' as post_mime_type,
+0 as comment_count
+FROM `website_xoops`.`smartsalas_salas` sa;
+
+
+INSERT INTO `website_port`.`wp_terms` (term_id, name, slug, term_group) VALUES (701, 'Aluguel de salas', 'aluguel-de-salas', 0);
+INSERT INTO `website_port`.`wp_term_taxonomy` (term_taxonomy_id, term_id, taxonomy, description, parent, count) VALUES (601, 701, 'category', '', 0, 0);
+
+
+INSERT INTO `website_port`.`wp_terms`
+SELECT (id+701) as term_id, 
+CONCAT(sa.titulo, ' - ', sa.cidade, ' - ', sa.estado)  as name,
+slugify( lower(CONCAT(sa.titulo, ' - ', sa.cidade, ' - ', sa.estado) ) ) as slug,
+0 as term_group
+FROM `website_xoops`.`smartsalas_salas` sa;
+
+
+INSERT INTO `website_port`.`wp_term_taxonomy`
+SELECT (sa.id+601) as term_taxonomy_id, 
+(id+701) as term_id,
+'category' as taxonomy,
+'' as description, 
+0 as parent, 
+0 as count 
+FROM `website_xoops`.`smartsalas_salas` sa;
+
+INSERT INTO `website_port`.`wp_term_relationships` 
+SELECT (sa.id+51000) AS object_id, (601) AS term_taxonomy_id, 0 as term_order 
+FROM `website_xoops`.`smartsalas_salas` sa;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(sa.id+51000) as post_id,
+NULL as meta_key,
+NULL as meta_value
+FROM `website_xoops`.`smartsalas_salas` sa;
+
+#
+

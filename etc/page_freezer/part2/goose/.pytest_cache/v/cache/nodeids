@@ -1,0 +1,11 @@
+[
+  "goose/tests/test_tasks.py::test_statistics", 
+  "goose/tests/test_tasks.py::test_statistics_remove_old_tasks", 
+  "goose/tests/test_tasks.py::test_statistics_remove_oldests", 
+  "goose/tests/test_tasks.py::test_do_the_logging", 
+  "goose/tests/test_tasks.py::test_increase_counter[1]", 
+  "goose/tests/test_tasks.py::test_increase_counter[2]", 
+  "goose/tests/test_tasks.py::test_increase_counter[3]", 
+  "goose/tests/test_tasks.py::test_increase_counter[4]", 
+  "goose/tests/test_tasks.py::test_increase_counter[5]"
+]

@@ -1,0 +1,89 @@
+#app-list li {
+    background-color:#AFAFAF;
+    display:inline;
+    width:83px;
+    text-align:center;
+    list-style-type:none;
+    padding:0px 5px 0px 5px;
+    line-height:35px;
+}
+
+#app-list a{
+    padding: 15px 4px;
+}
+
+#app-list a:link, #app-list a:visited {
+    color:#333333;
+    font-weight:bold;
+    font-size:13px;
+    text-decoration:none;
+}
+#app-list a:hover {
+    color:#417690;
+    text-decoration:none;
+    background-color:#FFFFFF;
+}
+#app-list a.sel-app{
+    color:#417690;
+    text-decoration:none;
+    background-color:#FFFFFF;
+}
+#app-list {
+    float:left;
+    width:100%;
+    background-color:#AFAFAF;
+    margin-bottom:10px;
+}
+#app-list ul {
+    padding:0px;
+    margin:0px;
+}
+
+#header {
+    background-color: #DFF2DD;
+    color: gray;
+}
+
+#header a:link, #header a:visited {
+    color: gray;
+}
+
+#branding h1 {
+    color: #559849;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #dff2dd;
+    color: black;
+}
+a.section:link, a.section:visited {
+    color: gray;
+}
+
+a:link, a:visited {
+    color:gray;
+}
+
+.row1 {
+    background: #FFFFEF;
+}
+
+.row2 {
+    background: #FFFFDF;
+}
+
+#changelist-filter {
+    background: #FFFFEF;
+    border-left:1px solid #DDDDDD;
+}
+
+body.login {
+    background: #FFFFEF;
+}
+
+#invoicesgen {
+    text-align: right;
+} 
+
+.moderation-bar {
+    float: left;
+}

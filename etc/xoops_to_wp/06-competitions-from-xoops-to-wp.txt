@@ -1,0 +1,322 @@
+#SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS GROUP BY TABLE_NAME;
+
+
+#SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS WHERE table_schema = 'website_port';
+
+#SELECT CONCAT('SELECT * FROM ', TABLE_SCHEMA, '.', TABLE_NAME, ' WHERE ', COLUMN_NAME, ' like "%Municipal%";')
+#FROM information_schema.COLUMNS
+#WHERE table_schema = 'website_port';
+
+#QUERY="SELECT CONCAT('SELECT * FROM ', TABLE_SCHEMA, '.', TABLE_NAME, ' WHERE ', COLUMN_NAME, ' like "%Municipal%";') FROM information_schema.COLUMNS WHERE table_schema = 'website_port';"
+#mysql -e "$QUERY" -pasdfgh01 website_port > teste.txt
+
+
+#select po.post_title, re.object_id, re.term_taxonomy_id, re.term_order from wp_posts po
+#LEFT JOIN wp_term_relationships re ON po.id = re.object_id
+#LEFT JOIN wp_term_taxonomy ta ON ta.term_taxonomy_id = re.term_taxonomy_id
+#LEFT JOIN wp_terms ter ON ter.term_id = ta.term_id
+#WHERE po.post_type = "jobman_job";
+
+
+
+DROP FUNCTION IF EXISTS `slugify`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost`
+FUNCTION `slugify`(dirty_string varchar(200))
+RETURNS varchar(200) CHARSET latin1
+DETERMINISTIC
+BEGIN
+    DECLARE x, y , z Int;
+    Declare temp_string, allowed_chars, new_string VarChar(200);
+    Declare is_allowed Bool;
+    Declare c, check_char VarChar(1);
+
+    set allowed_chars = "abcdefghijklmnopqrstuvwxyz0123456789-";
+    set temp_string = dirty_string;
+
+    Select temp_string Regexp('&') Into x;
+    If x = 1 Then
+        Set temp_string = replace(temp_string, '&', ' and ');
+    End If;
+
+    Select temp_string Regexp('[^a-z0-9]+') into x;
+    If x = 1 then
+        set z = 1;
+        While z <= Char_length(temp_string) Do
+            Set c = Substring(temp_string, z, 1);
+            Set is_allowed = False;
+            Set y = 1;
+            Inner_Check: While y <= Char_length(allowed_chars) Do
+                If (strCmp(ascii(Substring(allowed_chars,y,1)), Ascii(c)) = 0) Then
+                    Set is_allowed = True;
+                    Leave Inner_Check;
+                End If;
+                Set y = y + 1;
+            End While;
+            If is_allowed = False Then
+                Set temp_string = Replace(temp_string, c, '-');
+            End If;
+
+            set z = z + 1;
+        End While;
+    End If;
+
+    Select temp_string Regexp("^-|-$|'") into x;
+    If x = 1 Then
+        Set temp_string = Replace(temp_string, "'", '');
+        Set z = Char_length(temp_string);
+        Set y = Char_length(temp_string);
+        Dash_check: While z > 1 Do
+            If Strcmp(SubString(temp_string, -1, 1), '-') = 0 Then
+                Set temp_string = Substring(temp_string,1, y-1);
+                Set y = y - 1;
+            Else
+                Leave Dash_check;
+            End If;
+            Set z = z - 1;
+        End While;
+    End If;
+
+    Repeat
+        Select temp_string Regexp("--") into x;
+        If x = 1 Then
+            Set temp_string = Replace(temp_string, "--", "-");
+        End If;
+    Until x <> 1 End Repeat;
+
+    If LOCATE('-', temp_string) = 1 Then
+        Set temp_string = SUBSTRING(temp_string, 2);
+    End If;
+
+    Return temp_string;
+END;;
+DELIMITER ;
+
+#============================= Apaga os dados antigos do job manager =================================
+DELETE FROM  `website_port`.`wp_posts` where post_type = 'jobman_job';
+DELETE FROM  `website_port`.`wp_postmeta` where meta_key like 'data%';
+
+DELETE FROM `website_port`.`wp_terms`
+WHERE term_id in (SELECT term_id from `website_port`.`wp_term_taxonomy` WHERE taxonomy = 'jobman_category');
+
+DELETE FROM `website_port`.`wp_term_taxonomy`
+WHERE taxonomy = 'jobman_category';
+
+
+
+#========================== importa os concursos (os "posts" com post_type = "jobman_job") ===================
+
+INSERT INTO `website_port`.`wp_posts`
+SELECT 
+(lin.lid+40000) as id,
+1 as post_author,
+FROM_UNIXTIME(lin.date) as post_date,
+FROM_UNIXTIME(lin.date) as post_date_gmt,
+'' as post_content,
+CONCAT('Concurso: ', lin.state, ' - ', lin.local, ', ', lin.city) as post_title,
+'' as post_excerpt,
+'publish' as post_status,
+'closed' as comment_status,
+'closed' as ping_status,
+'' as post_password,
+slugify( lower(CONCAT('Concurso: ', lin.state, ' - ', lin.local, ', ', lin.city)) ) as post_name,
+NULL as to_ping,
+NULL as pinged,
+FROM_UNIXTIME(lin.date) as post_modified,
+FROM_UNIXTIME(lin.date) as post_modified_gmt,
+NULL as post_content_filtered,
+0 as post_parent,
+'' as guid,
+0 as menu_order,
+'jobman_job' as post_type,
+'' as post_mime_type,
+0 as comment_count
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin;
+#==================================================================================
+
+INSERT INTO `website_port`.`wp_terms`
+SELECT 
+(cat.cid+500) as term_id,
+cat.title as name,
+slugify(lower(cat.title)) as slug,
+0 as term_group
+FROM `website_xoops`.`xoopswebsite_concursos_cat` cat;
+
+INSERT INTO `website_port`.`wp_term_taxonomy`
+SELECT 
+(cat.cid+400) as term_taxonomy_id,
+(cat.cid+500) as term_id,
+'jobman_category' as taxonomy,
+'' as description,
+0 as parent,
+0 as count
+FROM `website_xoops`.`xoopswebsite_concursos_cat` cat;
+
+INSERT INTO `website_port`.`wp_term_relationships`
+SELECT 
+(lin.lid+40000) as object_id,
+(cat.cid+400) as term_taxonomy_id,
+0 as term_order
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin 
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid;
+
+INSERT INTO `website_port`.`wp_term_relationships`
+SELECT 
+(lin.lid+40000) as object_id,
+(cat.cid+400) as term_taxonomy_id,
+0 as term_order
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin 
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid2 = cat.cid
+WHERE lin.cid2 > 0;
+
+INSERT INTO `website_port`.`wp_term_relationships`
+SELECT 
+(lin.lid+40000) as object_id,
+(cat.cid+400) as term_taxonomy_id,
+0 as term_order
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin 
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid3 = cat.cid
+WHERE lin.cid3 > 0;
+
+INSERT INTO `website_port`.`wp_term_relationships`
+SELECT 
+(lin.lid+40000) as object_id,
+(cat.cid+400) as term_taxonomy_id,
+0 as term_order
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin 
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid4 = cat.cid
+WHERE lin.cid4 > 0;
+
+
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data5' as meta_key,
+CONCAT('Tipo: ', lin.tipo, ' <br/>',
+'Local: ', lin.local, ' - ', lin.city, '/Concurso: ', lin.state, ' <br>',
+'Cargo: ', cat.title, ' <br>',
+'Vagas: ', lin.vagas, ' <br>',
+'Carga Horária: ', lin.carga, ' <br>',
+'Remuneração: R$', lin.remuneracao, ' <br>', 
+'Requisitos: ', lin.requisitos, '<br>', 
+'Inscrições até: ', lin.inscricoes_data, ' - ', lin.inscricoes_local, ' <br>', 
+'Taxa: R$ ', lin.taxa, ' <br>', 
+'Edital: ', lin.edital, ' <br>', 
+'Detalhes: ', lin.detalhes, '<br/>') as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat2 ON lin.cid2 = cat2.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat3 ON lin.cid3 = cat3.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat4 ON lin.cid4 = cat4.cid
+WHERE lin.cid2 = 0 AND lin.cid3 = 0 AND lin.cid4 = 0;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data5' as meta_key,
+CONCAT('Tipo: ', lin.tipo, ' <br/>',
+'Local: ', lin.local, ' - ', lin.city, '/Concurso: ', lin.state, ' <br>',
+'Cargo: ', cat.title, ', ', cat2.title, ' <br>',
+'Vagas: ', lin.vagas, ' <br>',
+'Carga Horária: ', lin.carga, ' <br>',
+'Remuneração: R$', lin.remuneracao, ' <br>', 
+'Requisitos: ', lin.requisitos, '<br>', 
+'Inscrições até: ', lin.inscricoes_data, ' - ', lin.inscricoes_local, ' <br>', 
+'Taxa: R$ ', lin.taxa, ' <br>', 
+'Edital: ', lin.edital, ' <br>', 
+'Detalhes: ', lin.detalhes, '<br/>') as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat2 ON lin.cid2 = cat2.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat3 ON lin.cid3 = cat3.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat4 ON lin.cid4 = cat4.cid
+WHERE lin.cid2 > 0 AND lin.cid3 = 0 AND lin.cid4 = 0;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data5' as meta_key,
+CONCAT('Tipo: ', lin.tipo, ' <br/>',
+'Local: ', lin.local, ' - ', lin.city, '/Concurso: ', lin.state, ' <br>',
+'Cargo: ', cat.title, ', ', cat2.title, ', ', cat3.title, ' <br>',
+'Vagas: ', lin.vagas, ' <br>',
+'Carga Horária: ', lin.carga, ' <br>',
+'Remuneração: R$', lin.remuneracao, ' <br>', 
+'Requisitos: ', lin.requisitos, '<br>', 
+'Inscrições até: ', lin.inscricoes_data, ' - ', lin.inscricoes_local, ' <br>', 
+'Taxa: R$ ', lin.taxa, ' <br>', 
+'Edital: ', lin.edital, ' <br>', 
+'Detalhes: ', lin.detalhes, '<br/>') as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat2 ON lin.cid2 = cat2.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat3 ON lin.cid3 = cat3.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat4 ON lin.cid4 = cat4.cid
+WHERE lin.cid2 > 0 AND lin.cid3 > 0 AND lin.cid4 = 0;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data5' as meta_key,
+CONCAT('Tipo: ', lin.tipo, ' <br/>',
+'Local: ', lin.local, ' - ', lin.city, '/Concurso: ', lin.state, ' <br>',
+'Cargo: ', cat.title, ', ', cat2.title, ', ', cat3.title, ', ', cat4.title, ' <br>',
+'Vagas: ', lin.vagas, ' <br>',
+'Carga Horária: ', lin.carga, ' <br>',
+'Remuneração: R$', lin.remuneracao, ' <br>', 
+'Requisitos: ', lin.requisitos, '<br>', 
+'Inscrições até: ', lin.inscricoes_data, ' - ', lin.inscricoes_local, ' <br>', 
+'Taxa: R$ ', lin.taxa, ' <br>', 
+'Edital: ', lin.edital, ' <br>', 
+'Detalhes: ', lin.detalhes, '<br/>') as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat2 ON lin.cid2 = cat2.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat3 ON lin.cid3 = cat3.cid
+LEFT OUTER JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat4 ON lin.cid4 = cat4.cid
+WHERE lin.cid2 > 0 AND lin.cid3 > 0 AND lin.cid4 > 0;
+
+
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data4' as meta_key,
+CONCAT(lin.city, ' - ', lin.state) as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data3' as meta_key,
+lin.inscricoes_data as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data2' as meta_key,
+FROM_UNIXTIME(lin.date) as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid;
+
+INSERT INTO `website_port`.`wp_postmeta`
+SELECT
+NULL as meta_id,
+(lin.lid+40000) as post_id,
+'data1' as meta_key,
+CONCAT('R$', lin.remuneracao) as meta_value
+FROM `website_xoops`.`xoopswebsite_concursos_links` lin
+LEFT JOIN `website_xoops`.`xoopswebsite_concursos_cat` cat ON lin.cid = cat.cid;
+
+

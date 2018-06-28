@@ -1,0 +1,11 @@
+#Correção para atribuir a categoria notícia a todas as Notícias.
+INSERT IGNORE INTO `website_port2`.`wp_term_relationships` 
+SELECT po.id AS object_id, 1 AS term_taxonomy_id, 0 as term_order 
+FROM `website_xoops`.`xoopswebsite_stories` st
+JOIN `website_port2`.`wp_posts` po ON st.title = (po.post_title COLLATE latin1_general_ci);
+
+#Correção para o conteúdo dos artigos.
+UPDATE `website_port2`.`wp_posts` po
+JOIN `website_xoops`.`xoopswebsite_smartsection_items` it ON it.title = (po.post_title COLLATE latin1_general_ci)
+SET post_content = CONCAT(summary, '<br/><br/>', body), 
+post_title = title;

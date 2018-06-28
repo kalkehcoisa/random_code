@@ -1,0 +1,107 @@
+#Para remover os posts duplicados executar a primeira consulta várias vezes até retornar zero resultados. Depois é só executar as seguintes.
+DELETE FROM wp_posts where id IN
+(
+	SELECT rem_id
+	FROM (
+	   SELECT MAX(id) as rem_id, COUNT(post_name) AS count
+	   FROM wp_posts
+	   GROUP BY post_name
+	   HAVING (count > 1)
+	) AS x
+);
+
+DELETE FROM wp_term_taxonomy WHERE term_taxonomy_id IN
+(
+	SELECT term_taxonomy_id
+	FROM wp_term_relationships
+	WHERE object_id NOT IN
+	( SELECT id from wp_posts )
+);
+DELETE FROM wp_terms WHERE term_id NOT IN
+(
+	SELECT term_id from wp_term_taxonomy
+);
+DELETE FROM wp_term_relationships where object_id NOT IN
+(
+	SELECT id from wp_posts
+);
+#============================================================================================
+
+
+#Categorias XOOPS -> xoopswebsite_topics
+#topic_id
+#topic_pid - se diferente de 0, é subcategoria
+#topic_title
+#Noticias XOOPS -> xoopswebsite_stories
+#topicid -> vincula a noticia a uma categoria
+
+
+#view auxiliar para listar todas as associacoes de objetos com a categoria noticia, exceto a categoria noticia
+CREATE TEMPORARY TABLE `website_port2`.`temp` AS 
+SELECT
+re.term_taxonomy_id,
+re.object_id
+from `website_port2`.`wp_term_relationships` re
+JOIN `website_port2`.`wp_posts` po ON re.object_id = po.id
+JOIN `website_port2`.`wp_term_taxonomy` ta ON re.term_taxonomy_id = ta.term_taxonomy_id
+JOIN `website_port2`.`wp_terms` te ON te.term_id = ta.term_id
+where ta.taxonomy = 'category' 
+and te.slug <> 'noticias'
+and po.id IN
+(
+	select 
+	po2.id
+	from `website_port2`.`wp_terms` te2
+	JOIN `website_port2`.`wp_term_taxonomy` ta2 ON te2.term_id = ta2.term_id
+	JOIN `website_port2`.`wp_term_relationships` re2 ON re2.term_taxonomy_id = ta2.term_taxonomy_id
+	JOIN `website_port2`.`wp_posts`po2 ON po2.id = re2.object_id
+	where te2.slug = 'noticias'
+);
+
+#limpeza das categorias atribuidas de forma incorreta
+DELETE FROM `website_port2`.`wp_term_relationships`
+WHERE (term_taxonomy_id, object_id) IN 
+(SELECT term_taxonomy_id, object_id FROM `website_port2`.`temp`);
+
+DROP TABLE `website_port2`.`temp`;
+
+
+#consulta para atribuir as categorias corretamente
+INSERT IGNORE INTO `website_port2`.`wp_term_relationships` 
+SELECT
+DISTINCT( po.ID ) as object_id,
+ta.term_taxonomy_id AS term_taxonomy_id,
+0 as term_order 
+from `website_xoops`.`xoopswebsite_topics` t 
+JOIN `website_xoops`.`xoopswebsite_stories` s on t.topic_id = s.topicid
+JOIN `website_port2`.`wp_terms` ter on t.topic_title = (ter.name COLLATE latin1_general_ci)
+JOIN `website_port2`.`wp_posts` po on s.title = (po.post_title COLLATE latin1_general_ci)
+JOIN `website_port2`.`wp_term_taxonomy` ta on ta.term_id = ter.term_id
+where ta.taxonomy = 'post_tag';
+#==================================================================================
+
+
+#Ao executar as consultas acima os posts ficaram com atribuições de subcategorias do xoops e as tags, cópias das categoria
+#Com esta consulta foi gerada uma lista das tags, que foram desativadas e resolveu o problema.
+#mysql website_port2 -e 'select distinct(term_taxonomy_id) from temp' > new-cat-tag.sql
+#UPDATE `website_port2`.`wp_term_taxonomy` SET taxonomy = 'temp' WHERE term_taxonomy_id = n;
+
+
+insert into `website_port2`.`wp_terms` 
+select (topic_id+200) as term_id, 
+topic_title, 
+slugify( lower(topic_title) ) as slug, 
+0 as term_group 
+from `website_xoops`.`xoopswebsite_topics`;
+
+insert into `website_port2`.`wp_term_taxonomy`
+select NULL as term_taxonomy_id, term_id, 'category' as taxonomy, '' as description, 0 as parent, 0 as count 
+from `website_port`.`wp_terms` 
+where term_id > 1000;
+
+INSERT INTO `website_port2`.`wp_term_relationships` 
+SELECT (storyid+20000) AS object_id, (topicid+200) AS term_taxonomy_id, 0 as term_order 
+FROM `website_xoops`.`xoopswebsite_stories`;
+
+
+

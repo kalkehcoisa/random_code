@@ -1,0 +1,9 @@
+Your solution should have the following elements (in `part2` folder):
+- your solution files/modules;
+- files for testing;
+- README file explaining your solution, how to run system and tests;
+- Requirements file with dependencies;
+- (bonus!) File with automation script to install everything inside a virtualenv or similar.
+
+
+https://blog.jasonantman.com/2013/06/python-script-to-check-a-list-of-urls-for-return-code-and-final-return-code-if-redirected/

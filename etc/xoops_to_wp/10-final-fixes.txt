@@ -1,0 +1,12 @@
+UPDATE `website_port`.`wp_posts`
+SET post_content = CONCAT(post_excerpt, '<br/><br/>', post_content);
+
+UPDATE `website_port`.`wp_posts`
+SET post_excerpt = CONCAT(SUBSTRING(post_excerpt, 1, 600), '...')
+WHERE LENGTH(post_excerpt) > 600;
+
+
+#primeiro, remover html entities - ok
+#segundo, substituir acentos e especiais por caracteres comuns - falhou, complicado demais pra resultado de menos
+#terceiro, slugify neles
+update wp_posts set post_name = slugify( lower(html_unencode(post_title)) );
