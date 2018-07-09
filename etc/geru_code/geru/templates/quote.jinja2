@@ -1,0 +1,30 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Quote {{qid}} - Web Challenge 1.0{% endblock title %}
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">Quote</span> <span class="smaller">with lasers</span></h1>
+
+  <br/><br/>
+
+  {% if error %}
+  <h2>
+    Error <strong>"{{error}}"</strong> happened while retrieving the quote <b>"{{qid}}"</b>.
+  </h2>
+  {% else %}
+  <h2>{{qid}} - {{quote}}</h2>
+  {% endif %}
+  <br/><br/>
+
+  <div class="row">
+    <div class="col-md-2">
+      <a href="{{ request.route_url('quote', qid=[qid|int-1, 0]|max) }}">Previous</a>
+    </div>
+    <div class="col-md-8"></div>
+    <div class="col-md-2">
+      <a href="{{ request.route_url('quote', qid=qid|int+1) }}">Next</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

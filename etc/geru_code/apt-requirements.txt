@@ -1,0 +1,2 @@
+# libs that might be necessary to run the project
+libffi-dev

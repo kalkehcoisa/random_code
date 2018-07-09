@@ -1,0 +1,81 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Home - Web Challenge 1.0{% endblock title %}
+
+{% block content %}
+<div class="content">
+    <h1>
+        <span class="font-semi-bold">Web Challenge</span> 
+        <span class="smaller">
+            1.0 - 
+            <a href="https://gist.github.com/flaviogeru/53a739e35e1523a39bf3e7a95d177918">Instructions</a>
+        </span>
+    </h1>
+    <br/>
+
+    <h2>
+        1) Create a lib that will act as a wrapper around the API described above
+    </h2>
+    <p>Create a python package within you project to make queries to the API containing the following methods:</p>
+    <ul>
+        <li>
+            get_quotes() -> queries the API and returns a python dictionary containing all quotes available
+        </li>
+        <li>
+            get_quote(quote_number) -> queries the API and returns a python dictionary containing the corresponding quote
+        </li>
+    </ul>
+    <br/>
+
+
+    <h2>
+        2) Create a Pyramid application that will use the API
+    </h2>
+    <p>The application must have 4 routes:</p>
+    <ul>
+        <li>
+            / - Presents a simple HTML page containing a title that reads "Web Challenge 1.0".
+        </li>
+        <li>
+            /quotes - Presents a page containing all quotes returned by the API (each contained in its own bullet point).
+        </li>
+        <li>
+            /quotes/&lt;quote_number&gt; - Presents a page containing the &lt;quote_number&gt; quote returned by the API.
+        </li>
+        <li>
+            /quotes/random - Present a page containing a random quote. Both the &lt;quote_number&gt; and the quote selected randomly ought to be displayed.
+        </li>
+    </ul>
+    <br/>
+
+
+    <h2>
+        3) Create and register the session
+    </h2>
+    <p>Using the framework's session mechanism, create a unique identifier for all application requests that came from the same browser.</p>
+    <br/>
+
+    <h2>
+        4) Store requests in a database
+    </h2>
+    <p>Using SQLAlchemy + sqlite create a model (or models) to store:</p>
+    <ul>
+        <li>
+            The session identifier
+        </li>
+        <li>
+            The date, time and page requested within a given session for every request made.
+        </li>
+    </ul>
+    <br/>
+    <br/>
+
+    <h2>
+        5) Create RESTful endpoints to query the sessions/requests stored in the database
+    </h2>
+    <br/><br/>
+    <br/><br/>
+
+
+</div>
+{% endblock content %}

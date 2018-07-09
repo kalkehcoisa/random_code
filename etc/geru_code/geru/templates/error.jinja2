@@ -1,0 +1,10 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Error - Web Challenge 1.0{% endblock title %}
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">Web Challenge</span> <span class="smaller">1.0</span></h1>
+  <p class="lead">{{error|safe}}</p>
+</div>
+{% endblock content %}

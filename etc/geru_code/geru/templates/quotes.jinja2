@@ -1,0 +1,25 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Quotes - Web Challenge 1.0{% endblock title %}
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">Quotes</span> <span class="smaller">with lasers</span></h1>
+
+  <br/><br/>
+
+  {% if error %}
+  <h2>Error {{error}} happened while retrieving the quotes.</h2>
+  {% else %}
+  <ol start="0">
+  {% for quote in quotes %}
+    <li id="quote_{{loop.index0}}">
+      <a href="{{ request.route_url('quote', qid=loop.index0) }}">
+        {{quote}}
+      </a>
+    </li>
+  {% endfor %}
+  </ol>
+  {% endif %}
+</div>
+{% endblock content %}
